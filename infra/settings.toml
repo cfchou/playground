@@ -1,0 +1,30 @@
+[global]
+
+# =====================
+# default setting will be inherited
+[default]
+prefix = "dev-cfchou-me"
+app_name = "dev-cfchou.me"
+
+[default.restapi.throttle]
+# usage plan limit
+rate = 50
+burst = 100
+
+
+# =====================
+# setting in dev
+# take most of setting from [default] and its nested tables
+[dev]
+
+
+# =====================
+# setting in prod
+[prod]
+prefix = "cfchou-me"
+app_name = "cfchou.me"
+
+[prod.restapi.throttle]
+# usage plan limit
+rate = 100
+burst = 200

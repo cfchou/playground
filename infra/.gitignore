@@ -1,0 +1,8 @@
+
+# Ignore dynaconf secret files
+.secrets.*
+
+cdk.out
+default.profraw
+
+template.yaml

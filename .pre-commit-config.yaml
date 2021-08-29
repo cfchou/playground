@@ -1,0 +1,59 @@
+exclude: ^.*/Pipfile\.lock$
+repos:
+
+    # basic hooks
+  - repo: git://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+    - id: check-merge-conflict
+    - id: check-json
+      exclude: ^data/.*$
+    - id: check-yaml
+    - id: debug-statements
+    - id: end-of-file-fixer
+      exclude: ^docs/.*$
+    - id: pretty-format-json
+      args:
+      - --autofix
+      exclude: ^data/.*$
+    - id: trailing-whitespace
+      exclude: README.md
+
+    # hooks to fix syntaxes
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.24.0
+    hooks:
+    -   id: pyupgrade
+        args:
+        - --py38-plus
+
+    # hooks to autoformat code
+  - repo: https://github.com/ambv/black
+    rev: 21.7b0
+    hooks:
+    - id: black
+      language_version: python3
+      args:
+      - -S
+      - --line-length=79
+
+    # hooks to autosort imports
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.9.3
+    hooks:
+      - id: isort
+
+    # hooks to autosort imports
+  - repo: https://github.com/asottile/seed-isort-config
+    rev: v2.2.0
+    hooks:
+      - id: seed-isort-config
+        #args: [--exclude=tests/.*\.py|lib/.*]
+
+    # hooks to run flake8, run this last
+  - repo: https://github.com/PyCQA/flake8
+    rev: 3.9.2
+    hooks:
+    - id: flake8
+      # args: ['--ignore=E501']
+      args: ['--max-line-length=120', '--ignore=E203,W503']
