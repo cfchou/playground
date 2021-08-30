@@ -8,6 +8,7 @@ name = "pypi"
 "aws-cdk.aws-lambda-python" = "*"
 "aws-cdk.aws-apigateway" = "*"
 "aws-cdk.aws-cognito" = "*"
+"aws-cdk.pipelines" = "*"
 dynaconf = "*"
 pydantic = "*"
 

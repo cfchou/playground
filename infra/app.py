@@ -5,8 +5,13 @@ from pathlib import Path
 
 from aws_cdk import core as cdk
 from stacks.restapi import RestApiStack
+from stacks.cicd import CICDStack
 
-from config import get_settings
+from util.config import get_settings
+
+#import pydevd_pycharm
+#pydevd_pycharm.settrace('chifeng-tgr.local', port=1979, stdoutToServer=True, stderrToServer=True)
+
 
 # Load environment dependent settings
 # NOTE: You may use env switch. If not specified, whatever in "default" takes
@@ -20,23 +25,24 @@ for asset in Path("cdk.out").glob("asset.*"):
     shutil.rmtree(asset)
 
 app = cdk.App()
-RestApiStack(
+#RestApiStack(
+#    app,
+#    f"{settings.prefix}-restapi",
+#    settings=settings,
+#    env=cdk.Environment(
+#        account=os.getenv('CDK_DEFAULT_ACCOUNT'),
+#        region=os.getenv('CDK_DEFAULT_REGION'),
+#    ),
+#)
+
+CICDStack(
     app,
-    f"{settings.prefix}-restapi",
-    # If you don't specify 'env', this stack will be environment-agnostic.
-    # Account/Region-dependent features and context lookups will not work,
-    # but a single synthesized template can be deployed anywhere.
-    # Uncomment the next line to specialize this stack for the AWS Account
-    # and Region that are implied by the current CLI configuration.
+    f"{settings.prefix}-cicd",
     settings=settings,
     env=cdk.Environment(
-        account=os.getenv('CDK_DEFAULT_ACCOUNT'),
-        region=os.getenv('CDK_DEFAULT_REGION'),
+        account=settings.cdk_default_account,
+        region=settings.cdk_default_region,
     ),
-    # Uncomment the next line if you know exactly what Account and Region you
-    # want to deploy the stack to. */
-    # env=core.Environment(account='123456789012', region='us-east-1'),
-    # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
 )
 
 app.synth()

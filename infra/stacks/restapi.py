@@ -16,8 +16,8 @@ from aws_cdk.aws_apigateway import (
 )
 from aws_cdk.aws_lambda_python import PythonFunction, PythonLayerVersion
 
-from config import ResolvedSettings
-from constant import (
+from util.config import ResolvedSettings
+from util.constant import (
     RUNTIME_DIR,
     RUNTIME_STAGING_DIR,
     LAYER_STAGING_DIR,

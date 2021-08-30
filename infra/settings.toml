@@ -1,15 +1,25 @@
 [global]
 
+
 # =====================
 # default setting will be inherited
 [default]
 prefix = "dev-cfchou-me"
 app_name = "dev-cfchou.me"
 
+# Can overwrite CDK_DEFAULT_ACCOUNT & CDK_DEFAULT_REGION in environment
+#cdk_default_account = "897882544000"
+#cdk_default_region = "ap-southeast-1"
+
 [default.restapi.throttle]
 # usage plan limit
 rate = 50
 burst = 100
+
+[default.cicd]
+connection_arn = "arn:aws:codestar-connections:ap-southeast-1:897882544000:connection/9420d3ef-bd59-4fb7-83be-d5312df2b210"
+repo = "cfchou/playground"
+branch = "develop"
 
 
 # =====================
@@ -28,3 +38,12 @@ app_name = "cfchou.me"
 # usage plan limit
 rate = 100
 burst = 200
+
+[prod.cice]
+# NOTE: Can't partially overwrite nested default. It's probably a problem in
+#  dynaconf:
+# https://github.com/rochacbruno/dynaconf/issues/649#issuecomment-907610695
+connection_arn = "arn:aws:codestar-connections:ap-southeast-1:897882544000:connection/9420d3ef-bd59-4fb7-83be-d5312df2b210"
+repo = "cfchou/playground"
+branch = "master"
+

@@ -3,7 +3,7 @@ from aws_cdk import core as cdk
 from aws_cdk import aws_cognito as cognito
 from aws_cdk.aws_cognito import UserVerificationConfig, VerificationEmailStyle, UserInvitationConfig, SignInAliases
 
-from config import ResolvedSettings
+from util.config import ResolvedSettings
 
 
 class AuthStack(cdk.Stack):
