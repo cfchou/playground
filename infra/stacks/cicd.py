@@ -43,7 +43,10 @@ class CICDStack(cdk.Stack):
         self.pipeline = CodePipeline(
             self, f"{settings.prefix}-pipeline",
             pipeline_name=f"{settings.prefix}-pipeline",
-            synth=synth)
+            synth=synth,
+            # NOTE: because RestApiStack uses docker to bundle files
+            docker_enabled_for_synth=True,
+        )
 
         self.pipeline.add_stage(
             RestApiStage(
