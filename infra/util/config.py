@@ -58,7 +58,7 @@ class CICDSetting(BaseModel, DynaNestedConvertMixin):
 
 class ResolvedSettings(BaseModel):
     # TODO: secret should be mandatory
-    secrets: Optional[Secrets]
+    #secrets: Secrets
     current_env: str
     app_name: str
     prefix: str

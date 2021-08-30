@@ -33,10 +33,10 @@ class AuthStack(cdk.Stack):
             #)
         )
 
-        self.provider = cognito.UserPoolIdentityProviderGoogle(
-            self, f"{settings.prefix}-google",
-            client_id=settings.secrets.client_id,
-            client_secret=settings.secrets.client_secret,
-            scopes=["profile", "email", "openid"]
-        )
+        #self.provider = cognito.UserPoolIdentityProviderGoogle(
+        #    self, f"{settings.prefix}-google",
+        #    client_id=settings.secrets.client_id,
+        #    client_secret=settings.secrets.client_secret,
+        #    scopes=["profile", "email", "openid"]
+        #)
 
