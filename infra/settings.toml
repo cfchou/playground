@@ -17,7 +17,8 @@ rate = 50
 burst = 100
 
 [default.cicd]
-connection_arn = "arn:aws:codestar-connections:ap-southeast-1:897882544000:connection/9420d3ef-bd59-4fb7-83be-d5312df2b210"
+#connection_arn = "arn:aws:codestar-connections:ap-southeast-1:897882544000:connection/9420d3ef-bd59-4fb7-83be-d5312df2b210"
+connection_arn = "arn:aws:codestar-connections:ap-southeast-1:410801124909:connection/06345e4c-8299-4ef5-9ebd-994a4434d576"
 repo = "cfchou/playground"
 branch = "develop"
 
