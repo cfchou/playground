@@ -36,10 +36,12 @@ class CICDStack(cdk.Stack):
                 "export VIRTUAL_ENV=/venv",
                 "pipenv install --keep-outdated --ignore-pipfile",
             ],
-            commands=["cdk synth"],
+            commands=[
+                "cdk synth",
+                "ls -l cdk.out/",
+            ],
             primary_output_directory="infra/cdk.out"
         )
-
         self.pipeline = CodePipeline(
             self, f"{settings.prefix}-pipeline",
             pipeline_name=f"{settings.prefix}-pipeline",
@@ -47,7 +49,6 @@ class CICDStack(cdk.Stack):
             # NOTE: because RestApiStack uses docker to bundle files
             docker_enabled_for_synth=True,
         )
-
         self.pipeline.add_stage(
             RestApiStage(
                 self,
