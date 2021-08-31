@@ -1,4 +1,4 @@
-exclude: ^.*/Pipfile\.lock$
+exclude: ^.*/Pipfile\.lock$|^infra/cdk\.json$
 repos:
 
     # basic hooks
