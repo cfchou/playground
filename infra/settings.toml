@@ -17,8 +17,7 @@ rate = 50
 burst = 100
 
 [default.cicd]
-#connection_arn = "arn:aws:codestar-connections:ap-southeast-1:897882544000:connection/9420d3ef-bd59-4fb7-83be-d5312df2b210"
-connection_arn = "arn:aws:codestar-connections:ap-southeast-1:410801124909:connection/06345e4c-8299-4ef5-9ebd-994a4434d576"
+connection_arn = "arn:aws:codestar-connections:ap-southeast-1:897882544000:connection/183630a4-d3f9-4ba3-943e-a025872036a1"
 repo = "cfchou/playground"
 branch = "develop"
 
@@ -40,11 +39,11 @@ app_name = "cfchou.me"
 rate = 100
 burst = 200
 
-[prod.cice]
+[prod.cicd]
 # NOTE: Can't partially overwrite nested default. It's probably a problem in
 #  dynaconf:
 # https://github.com/rochacbruno/dynaconf/issues/649#issuecomment-907610695
-connection_arn = "arn:aws:codestar-connections:ap-southeast-1:897882544000:connection/9420d3ef-bd59-4fb7-83be-d5312df2b210"
+connection_arn = "arn:aws:codestar-connections:ap-southeast-1:897882544000:connection/183630a4-d3f9-4ba3-943e-a025872036a1"
 repo = "cfchou/playground"
 branch = "master"
 
