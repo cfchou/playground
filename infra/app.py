@@ -9,10 +9,6 @@ from stacks.cicd import CICDStack
 
 from util.config import get_settings
 
-#import pydevd_pycharm
-#pydevd_pycharm.settrace('chifeng-tgr.local', port=1979, stdoutToServer=True, stderrToServer=True)
-
-
 # Load environment dependent settings
 # NOTE: You may use env switch. If not specified, whatever in "default" takes
 #  effect.
@@ -25,24 +21,33 @@ for asset in Path("cdk.out").glob("asset.*"):
     shutil.rmtree(asset)
 
 app = cdk.App()
-#RestApiStack(
-#    app,
-#    f"{settings.prefix}-restapi",
-#    settings=settings,
-#    env=cdk.Environment(
-#        account=os.getenv('CDK_DEFAULT_ACCOUNT'),
-#        region=os.getenv('CDK_DEFAULT_REGION'),
-#    ),
-#)
+if app.node.try_get_context('create_cicd'):
+    print("#============================")
+    print("# Creating CI/CD stack")
+    print("#============================")
+    CICDStack(
+        app,
+        f"{settings.prefix}-cicd",
+        settings=settings,
+        env=cdk.Environment(
+            account=settings.cdk_default_account,
+            region=settings.cdk_default_region,
+        ),
+    )
+else:
+    print("#============================")
+    print("# Creating application stack")
+    print("#============================")
+    # This could be executed locally or by the deployed CI/CD Stack
+    RestApiStack(
+        app,
+        f"{settings.prefix}-restapi",
+        settings=settings,
+        env=cdk.Environment(
+            account=os.getenv('CDK_DEFAULT_ACCOUNT'),
+            region=os.getenv('CDK_DEFAULT_REGION'),
+        ),
+    )
 
-CICDStack(
-    app,
-    f"{settings.prefix}-cicd",
-    settings=settings,
-    env=cdk.Environment(
-        account=settings.cdk_default_account,
-        region=settings.cdk_default_region,
-    ),
-)
 
 app.synth()
