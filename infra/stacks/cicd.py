@@ -37,7 +37,7 @@ class CICDStack(cdk.Stack):
                 "pipenv install --keep-outdated --ignore-pipfile",
             ],
             commands=[
-                "cdk synth",
+                "cdk synth -c create_cicd=True",
                 "ls -l cdk.out/",
             ],
             primary_output_directory="infra/cdk.out"

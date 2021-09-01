@@ -25,6 +25,7 @@ if app.node.try_get_context('create_cicd'):
     print("#============================")
     print("# Creating CI/CD stack")
     print("#============================")
+    # This could be executed locally or in CodePipeline
     CICDStack(
         app,
         f"{settings.prefix}-cicd",
@@ -38,7 +39,7 @@ else:
     print("#============================")
     print("# Creating application stack")
     print("#============================")
-    # This could be executed locally or by the deployed CI/CD Stack
+    # This could be executed locally
     RestApiStack(
         app,
         f"{settings.prefix}-restapi",
